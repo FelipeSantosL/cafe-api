@@ -1,11 +1,10 @@
 O conteúdo 📋
 
 ☕ Cafe API
+
 API REST de e-commerce para cafeteria com autenticação, pedidos e controle de estoque — construída em ASP.NET Core com Clean Architecture.
 
-.NETC#SQL ServerEF Core
-
-🚧 Projeto de portfólio em evolução — próximos passos: testes automatizados (xUnit) e deploy.
+🚧 Projeto de portfólio em evolução — próximo passo: deploy em cloud. Testes de regras de negócio com xUnit + Moq já implementados.
 📌 Funcionalidades
 🔐 Autenticação JWT com roles (Admin/Customer) e senhas hasheadas com BCrypt
 📦 CRUD de produtos com paginação, busca por nome e filtro por categoria
@@ -31,9 +30,9 @@ ASP.NET Core (Web API) · Entity Framework Core · SQL Server (LocalDB) · Fluen
 ⚙️ Como rodar
 Pré-requisitos: .NET 10 SDK e SQL Server LocalDB (incluso no Visual Studio).
 
-# 1. Clonegit clone https://github.com/FelipeSantosL/cafe-api.gitcd cafe-api
-# 2. Aplique as migrations (cria o banco com dados de exemplo)dotnet tool install --global dotnet-ef      
-# se ainda não tiver dotnet ef database update --project Cafe.Infrastructure --startup-project Cafe.Api
+# 1. Clonegit clone https://github.com/FelipeSantosL/cafe-api.gitcdcafe-api
+# 2. Aplique as migrations (cria o banco com dados de exemplo)dotnet tool install --global dotnet-ef        
+# se ainda não tiverdotnet ef database update --project Cafe.Infrastructure --startup-project Cafe.Api
 # 3. Rode 🚀dotnet run --project Cafe.Api
 # 4. Abra o Swagger# https://localhost:PORTA/swagger  (a porta aparece no console)
 A connection string padrão aponta para LocalDB — ajuste em Cafe.Api/appsettings.json para usar outro SQL Server.
@@ -60,5 +59,3 @@ Transação única no pedido — validação de estoque, decremento e gravação
 Concorrência otimista — RowVersion nos produtos garante que dois pedidos simultâneos no mesmo estoque resultem em 409 para um deles.
 Anti-enumeração — login inválido sempre responde "Email ou senha inválidos", sem revelar se o email existe; pedidos de outros usuários retornam 404, não 403.
 Regras de domínio antes do banco — unicidade e existência de categoria validadas no service, com o banco (FK/unique) como última linha de defesa.
-
-🚧 Projeto de portfólio em evolução — próximo passo: deploy em cloud. Testes de regras de negócio com xUnit + Moq já implementados.
