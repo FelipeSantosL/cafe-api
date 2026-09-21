@@ -60,3 +60,5 @@ Transação única no pedido — validação de estoque, decremento e gravação
 Concorrência otimista — RowVersion nos produtos garante que dois pedidos simultâneos no mesmo estoque resultem em 409 para um deles.
 Anti-enumeração — login inválido sempre responde "Email ou senha inválidos", sem revelar se o email existe; pedidos de outros usuários retornam 404, não 403.
 Regras de domínio antes do banco — unicidade e existência de categoria validadas no service, com o banco (FK/unique) como última linha de defesa.
+
+🚧 Projeto de portfólio em evolução — próximo passo: deploy em cloud. Testes de regras de negócio com xUnit + Moq já implementados.
