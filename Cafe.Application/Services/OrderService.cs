@@ -50,7 +50,7 @@ namespace Cafe.Application.Services
                         Id = Guid.NewGuid(),
                         ProductId = product.Id,
                         Quantity = item.Quantity,
-                        UnitPrice = product.Price  // ← preço VEM do servidor, nunca do cliente
+                        UnitPrice = product.Price  // ← preço vem do servidor, nunca do cliente
                     };
                 }).ToList()
             };
@@ -66,9 +66,9 @@ namespace Cafe.Application.Services
             }
 
             orderRepository.Add(order);                    // marca o pedido (não salva)
-            await orderRepository.SaveChangesAsync(ct);    // UM save: pedido + itens + estoque
+            await orderRepository.SaveChangesAsync(ct);    // um save: pedido + itens + estoque
 
-            await transaction.CommitAsync(ct);             // UM commit
+            await transaction.CommitAsync(ct);             
 
             logger.LogInformation("Pedido {OrderId} criado para o usuário {UserId}. Total: {Total}",
                 order.Id, userId, order.Total);
@@ -134,4 +134,6 @@ namespace Cafe.Application.Services
             }).ToList()
         };
     }
+
+
 }
