@@ -47,7 +47,7 @@ builder.Services.AddSwaggerGen(c =>
 
 // Banco
 builder.Services.AddDbContext<CafeDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("CafeDb")));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("CafeDb")));
 
 // Autenticação JWT
 builder.Services

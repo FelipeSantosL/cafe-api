@@ -33,8 +33,8 @@ namespace Cafe.Infrastructure.Data
                 e.HasKey(p => p.Id);
                 e.Property(p => p.Name).IsRequired().HasMaxLength(150);
                 e.Property(p => p.Description).HasMaxLength(500);
-                e.Property(p => p.Price).HasPrecision(10, 2);
-                e.Property(p => p.RowVersion).IsRowVersion();
+                e.Property(p => p.Price).HasPrecision(18, 2);
+                e.Property<uint>("xmin").IsRowVersion();
                 e.HasIndex(p => p.IsActive);
 
                 e.HasOne(p => p.Category)
@@ -53,7 +53,7 @@ namespace Cafe.Infrastructure.Data
             {
                 e.HasKey(o => o.Id);
                 e.Property(o => o.Status).IsRequired().HasMaxLength(20);
-                e.Property(o => o.Total).HasPrecision(12, 2);
+                e.Property(o => o.Total).HasPrecision(18, 2);
                 e.Property(o => o.CreatedAt);
                 e.HasOne(o => o.User)
                     .WithMany()
@@ -66,7 +66,7 @@ namespace Cafe.Infrastructure.Data
             modelBuilder.Entity<OrderItem>(e =>
             {
                 e.HasKey(i => i.Id);
-                e.Property(i => i.UnitPrice).HasPrecision(10, 2);
+                e.Property(i => i.UnitPrice).HasPrecision(18, 2);
 
                 e.HasOne(i => i.Order)
                     .WithMany(o => o.Items)
